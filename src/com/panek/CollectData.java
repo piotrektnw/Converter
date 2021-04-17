@@ -21,8 +21,7 @@ public class CollectData {
             /*
             Validate input
              */
-
-            /*
+            
             if (!scanner.hasNextInt()) {
                 scanner.next();
                 System.err.println("Please choose number: 1, 2 or 3.");
@@ -34,7 +33,7 @@ public class CollectData {
                 } else {
                     System.err.println("Please choose number: 1, 2 or 3.");
                 }
-            }*/
+            }
         }
     }
 
