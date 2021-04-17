@@ -19,17 +19,20 @@ public class CollectData {
             System.out.println("3) Kelvin");
 
             /*
-            Validate input - improved version
-            with external method
+            Validate input
              */
 
-            try {
+            if (!scanner.hasNextInt()) {
+                scanner.next();
+                System.err.println("Please choose number: 1, 2 or 3.");
+            } else if (scanner.hasNextInt()) {
                 choice = scanner.nextInt();
-                if(InputValidator.inputIsValid(choice))
+
+                if (choice == 1 || choice == 2 || choice == 3) {
                     return choice;
-            }
-            catch (Exception e) {
-                System.out.println("Please enter number: 1, 2 or 3.");
+                } else {
+                    System.err.println("Please choose number: 1, 2 or 3.");
+                }
             }
         }
     }
@@ -49,16 +52,20 @@ public class CollectData {
             System.out.println("3) Kelvin");
 
             /*
-            Validate input - improved version
-            with external method
+            Validate input
             */
-            try {
+
+            if (!scanner.hasNextInt()) {
+                String errCatch = scanner.next();
+                System.err.println("Please choose number: 1, 2 or 3.");
+            } else if (scanner.hasNextInt()) {
                 choiceTo = scanner.nextInt();
-                if(InputValidator.inputIsValid(choiceTo))
+
+                if (choiceTo == 1 || choiceTo == 2 || choiceTo == 3) {
                     return choiceTo;
-            }
-            catch (Exception e) {
-                System.out.println("Please enter number: 1, 2 or 3.");
+                } else {
+                    System.err.println("Please choose number: 1, 2 or 3.");
+                }
             }
         }
     }
