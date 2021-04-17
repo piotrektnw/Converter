@@ -9,7 +9,7 @@ public class CollectData {
         /*
         Method collects and validates user input
          */
-        int choice = 0;
+        int choice;
 
         while (true) {
             Scanner scanner = new Scanner(System.in);
@@ -19,22 +19,18 @@ public class CollectData {
             System.out.println("3) Kelvin");
 
             /*
-            Validate input
+            Validate input - improved version
+            with external method
              */
 
-            /*
-            if (!scanner.hasNextInt()) {
-                scanner.next();
-                System.err.println("Please choose number: 1, 2 or 3.");
-            } else if (scanner.hasNextInt()) {
+            try {
                 choice = scanner.nextInt();
-
-                if (choice == 1 || choice == 2 || choice == 3) {
+                if(InputValidator.inputIsValid(choice))
                     return choice;
-                } else {
-                    System.err.println("Please choose number: 1, 2 or 3.");
-                }
-            }*/
+            }
+            catch (Exception e) {
+                System.out.println("Please enter number: 1, 2 or 3.");
+            }
         }
     }
 
@@ -43,7 +39,7 @@ public class CollectData {
         /*
         Method collects and validates user input
          */
-        int choiceTo = 0;
+        int choiceTo;
 
         while (true) {
             Scanner scanner = new Scanner(System.in);
@@ -53,20 +49,16 @@ public class CollectData {
             System.out.println("3) Kelvin");
 
             /*
-            Validate input
+            Validate input - improved version
+            with external method
             */
-
-            if (!scanner.hasNextInt()) {
-                String errCatch = scanner.next();
-                System.err.println("Please choose number: 1, 2 or 3.");
-            } else if (scanner.hasNextInt()) {
+            try {
                 choiceTo = scanner.nextInt();
-
-                if (choiceTo == 1 || choiceTo == 2 || choiceTo == 3) {
+                if(InputValidator.inputIsValid(choiceTo))
                     return choiceTo;
-                } else {
-                    System.err.println("Please choose number: 1, 2 or 3.");
-                }
+            }
+            catch (Exception e) {
+                System.out.println("Please enter number: 1, 2 or 3.");
             }
         }
     }
@@ -77,7 +69,7 @@ public class CollectData {
         Method collects and validates user input
          */
 
-        double temperature = 0;
+        double temperature;
 
         if (choice == 1) {
             System.out.println("Enter Celsius temperature: ");

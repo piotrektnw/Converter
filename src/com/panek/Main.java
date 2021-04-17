@@ -14,7 +14,7 @@ public class Main {
 
     collect.makeMath(choice, choiceTo, temperature);
     }
-//add dependencies (you cannot choose Celsius  twice, etc.)
+
 
 
 
