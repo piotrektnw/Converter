@@ -22,18 +22,15 @@ public class CollectData {
             Validate input
              */
 
-            if (!scanner.hasNextInt()) {
-                scanner.next();
-                System.err.println("Please choose number: 1, 2 or 3.");
-            } else if (scanner.hasNextInt()) {
+            try {
                 choice = scanner.nextInt();
-
-                if (choice == 1 || choice == 2 || choice == 3) {
+                if(InputValidator.inputIsValid(choice))
                     return choice;
-                } else {
-                    System.err.println("Please choose number: 1, 2 or 3.");
-                }
             }
+            catch (Exception e) {
+                System.out.println("Please enter number: 1, 2 or 3.");
+            }
+
         }
     }
 
@@ -55,18 +52,15 @@ public class CollectData {
             Validate input
             */
 
-            if (!scanner.hasNextInt()) {
-                String errCatch = scanner.next();
-                System.err.println("Please choose number: 1, 2 or 3.");
-            } else if (scanner.hasNextInt()) {
+            try {
                 choiceTo = scanner.nextInt();
-
-                if (choiceTo == 1 || choiceTo == 2 || choiceTo == 3) {
+                if(InputValidator.inputIsValid(choiceTo))
                     return choiceTo;
-                } else {
-                    System.err.println("Please choose number: 1, 2 or 3.");
-                }
             }
+            catch (Exception e) {
+                System.out.println("Please enter number: 1, 2 or 3.");
+            }
+
         }
     }
 
