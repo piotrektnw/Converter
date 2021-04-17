@@ -1,13 +1,13 @@
 # Temperature converter
 
-This project has been created to train Java skills. 
+Convert temperatures in most efficient way - program is constantly developed. 
 
 ## Description
 
-This project is a command line program which main goal is to convert temperature formats. 
+This is a command line program to convert temperatures according to user input.
 
 This simple project is under constant development where current solutions are being improved, new solutions are implemented and code is reviewed in order to find its weaknesses. 
-Each improvement or development will be committed. 
+Each improvement or development will be committed and proved. 
 
 ## Authors
 
