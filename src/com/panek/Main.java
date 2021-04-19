@@ -17,12 +17,19 @@ public class Main {
 
         CollectData collect = new CollectData();
 
-        int factorOne = collect.collectFormatToConvert();
-        int factorTwo = collect.collectFormatToBeConverted();
+        while (true) {
 
-        double validTemperature = collect.collectTemperature(factorOne);
+            int factorOne = collect.collectFormatToConvert();
+            int factorTwo = collect.collectFormatToBeConverted();
 
-        collect.convert(factorOne, factorTwo, validTemperature);
+            while (factorOne == factorTwo) {
+                System.out.println("Please choose different formats.");
+                factorOne = collect.collectFormatToConvert();
+                factorTwo = collect.collectFormatToBeConverted();
+            }
+            double validTemperature = collect.collectTemperature(factorOne);
 
+            collect.convert(factorOne, factorTwo, validTemperature);
+        }
     }
 }
