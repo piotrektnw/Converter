@@ -4,12 +4,17 @@ import java.util.Scanner;
 
 public class CollectData {
 
-    public int collectData() {
+    String goodbyeMessage = "Thank your for using Converter.";
+    String usage = "Please enter number: 1, 2 or 3 (\"q\" for quit).";
+
+    public int collectFormatToConvert() {
 
         /*
         Method collects and validates user input
          */
-        int choice;
+        //int choice;
+        String factorOne;
+        int validFactorOne;
 
         while (true) {
             Scanner scanner = new Scanner(System.in);
@@ -19,27 +24,40 @@ public class CollectData {
             System.out.println("3) Kelvin");
 
             /*
-            Validate input
+            Extended input validation:
+            - accept integer in range 1 - 3 (refer to: InputValidator.java)
+            - accept 'q' as quit (refer to: userQuit.java)
              */
 
-            try {
-                choice = scanner.nextInt();
-                if(InputValidator.inputIsValid(choice))
-                    return choice;
-            }
-            catch (Exception e) {
-                System.out.println("Please enter number: 1, 2 or 3.");
+            factorOne = scanner.next();
+
+            if (userQuit.confirmed(factorOne)) {
+                System.out.println(goodbyeMessage);
+                System.exit(0);
             }
 
+            else {
+
+                try {
+                    validFactorOne = Integer.parseInt(factorOne);
+                    if (InputValidator.inputIsValid(validFactorOne, usage)) {
+                        return validFactorOne;
+                    }
+                }
+                catch (Exception e) {
+                    System.out.println(usage);
+                }
+            }
         }
     }
 
-    public int collectDataTo() {
+    public int collectFormatToBeConverted() {
 
         /*
         Method collects and validates user input
          */
-        int choiceTo;
+        String factorTwo;
+        int validFactorTwo;
 
         while (true) {
             Scanner scanner = new Scanner(System.in);
@@ -49,70 +67,96 @@ public class CollectData {
             System.out.println("3) Kelvin");
 
             /*
-            Validate input
-            */
+            Extended input validation:
+            - accept integer in range 1 - 3 (refer to: InputValidator.java)
+            - accept 'q' as quit (refer to: userQuit.java)
+             */
 
-            try {
-                choiceTo = scanner.nextInt();
-                if(InputValidator.inputIsValid(choiceTo))
-                    return choiceTo;
-            }
-            catch (Exception e) {
-                System.out.println("Please enter number: 1, 2 or 3.");
+            factorTwo = scanner.next();
+
+            if (userQuit.confirmed(factorTwo)) {
+                System.out.println(goodbyeMessage);
+                System.exit(0);
             }
 
+            else {
+
+                try {
+                    validFactorTwo = Integer.parseInt(factorTwo);
+                    if (InputValidator.inputIsValid(validFactorTwo, usage)) {
+                        return validFactorTwo;
+                    }
+                }
+                catch (Exception e) {
+                    System.out.println(usage);
+                }
+            }
         }
     }
 
-    public double collectTemperature(int choice) {
+    public double collectTemperature(int validFactorTwo) {
 
         /*
         Method collects and validates user input
          */
 
-        double temperature;
+        String temperature;
+        double validTemperature;
 
-        if (choice == 1) {
+        if (validFactorTwo == 1) {
             System.out.println("Enter Celsius temperature: ");
-        } else if (choice == 2) {
+        } else if (validFactorTwo == 2) {
             System.out.println("Enter Fahrenheit temperature:");
         } else {
             System.out.println("Enter Kelvin temperature: ");
-
         }
 
         while (true) {
             Scanner scanner = new Scanner(System.in);
+
             /*
-            Check input validity
+            Extended input validation:
+            - accept double value only,
+            - accept 'q' as quit (refer to: userQuit.java).
              */
-            if (!scanner.hasNextDouble()) {
-                System.err.println("Your input must be an integer.");
-            } else {
-                temperature = scanner.nextDouble();
-                break;
+
+            temperature = scanner.next();
+
+            if (userQuit.confirmed(temperature)) {
+                System.out.println(goodbyeMessage);
+                System.exit(0);
+            }
+            else {
+
+                try {
+                    validTemperature = Double.parseDouble(temperature);
+                    return validTemperature;
+                }
+
+                catch (Exception e) {
+                    System.out.println(usage);
+                }
             }
         }
-        return temperature;
     }
 
-    public void makeMath(int choice, int choiceTo, double temperature) {
+    public void convert(int validFactorOne, int validFactorTwo, double validTemperature) {
 
         /*
         Count temperature
          */
-        if (choice == 1 && choiceTo == 2) {
-            System.out.printf("Celsius to Fahrenheit is %.2f", ((temperature * 9 / 5) + 32));
-        } else if (choice == 2 && choiceTo == 1) {
-            System.out.printf("Fahrenheit to Celsius is %.2f", ((temperature - 32) * 5 / 9));
-        } else if (choice == 1 && choiceTo == 3) {
-            System.out.printf("Celsius to Kelvin is %.2f", (temperature + 273.15));
-        } else if (choice == 3 && choiceTo == 1) {
-            System.out.printf("Kelvin to Celsius is %.2f", (temperature - 273.15));
-        } else if (choice == 3 && choiceTo == 2) {
-            System.out.printf("Kelvin to Fahrenheit is: %.2f", ((temperature - 273.15) * 9/5 + 32));
-        } else if (choice == 2 && choiceTo == 3) {
-            System.out.printf("Fahrenheit to Kelvin is: %.2f", ((temperature - 32) * 5/9 + 273.15));
+        if (validFactorOne == 1 && validFactorTwo == 2) {
+            System.out.printf("Celsius to Fahrenheit is %.2f \n", ((validTemperature * 9 / 5) + 32));
+        } else if (validFactorOne == 2 && validFactorTwo == 1) {
+            System.out.printf("Fahrenheit to Celsius is %.2f \n", ((validTemperature - 32) * 5 / 9));
+        } else if (validFactorOne == 1 && validFactorTwo == 3) {
+            System.out.printf("Celsius to Kelvin is %.2f \n", (validTemperature + 273.15));
+        } else if (validFactorOne == 3 && validFactorTwo == 1) {
+            System.out.printf("Kelvin to Celsius is %.2f \n", (validTemperature - 273.15));
+        } else if (validFactorOne == 3 && validFactorTwo == 2) {
+            System.out.printf("Kelvin to Fahrenheit is: %.2f \n", ((validTemperature - 273.15) * 9/5 + 32));
+        } else if (validFactorOne == 2 && validFactorTwo == 3) {
+            System.out.printf("Fahrenheit to Kelvin is: %.2f \n", ((validTemperature - 32) * 5/9 + 273.15));
         }
 
     }

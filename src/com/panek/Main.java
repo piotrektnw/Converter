@@ -1,3 +1,13 @@
+/*
+    CLI 'Converter':
+    - main goal: collect input and convert temperature value
+    - additional functions:
+        -  validate user input:
+            - accept designated data types,
+            - quit anytime user wants,
+ */
+
+
 package com.panek;
 
 
@@ -5,17 +15,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-    CollectData collect = new CollectData();
+        CollectData collect = new CollectData();
 
-    int choice = collect.collectData();
-    int choiceTo = collect.collectDataTo();
-    double temperature = collect.collectTemperature(choice);
+        int factorOne = collect.collectFormatToConvert();
+        int factorTwo = collect.collectFormatToBeConverted();
 
-    collect.makeMath(choice, choiceTo, temperature);
+        double validTemperature = collect.collectTemperature(factorOne);
+
+        collect.convert(factorOne, factorTwo, validTemperature);
+
     }
-
-
-
-
-
 }
