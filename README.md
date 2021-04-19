@@ -12,7 +12,7 @@ Each improvement or development will be committed and proved.
 ## Authors
 
 Author: Piotr Panek
-Contact me: p.panek [ at ] o2.pl
+Contact me: piotrektnw [ at ] outlook.com
 
 
 ## Version History
