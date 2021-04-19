@@ -52,7 +52,7 @@ public class CollectData {
     }
 
     public int collectFormatToBeConverted() {
-
+git
         /*
         Method collects and validates user input
          */
