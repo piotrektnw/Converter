@@ -28,7 +28,8 @@ Contact me: piotrektnw [ at ] outlook.com
     (Date: 18.04.2021)
     * Improved input validation: 
       - input validation is provided by external method
-      
+    
+    (Date: 22.04.2021)
     * Date manager:
       - Added module for date management:
         - date in LocalDate format - able to count time period and other linked with LocalDate,
