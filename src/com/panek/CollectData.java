@@ -1,18 +1,45 @@
 package com.panek;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class CollectData {
 
-    String goodbyeMessage = "Thank your for using Converter.";
-    String usage = "Please enter number: 1, 2 or 3 (\"q\" for quit).";
+    Messages messages = new Messages();
+    String goodbyeMessage = messages.goodbyeMessage;
+    String usage = messages.usage;
+    String usageYear = messages.usageYear;
+    String usageMonth = messages.usageMonth;
+    String usageDay = messages.usageDay;
+    String chooseDate = messages.chooseDate;
+    String startMessage = messages.startMessage;
+    String warningMessage = messages.warningMessage;
+    String chooseTemperature = messages.chooseTemperature;
+    String absoluteCelsius = messages.absoluteCelsius;
+    String absoluteFahrenheit = messages.absoluteFahrenheit;
+    String absoluteKelvin = messages.absoluteKelvin;
+    String formatError = messages.formatError;
+
+    public LocalDate collectDate() {
+
+        /*
+        Collect validated date data and return it as a LocalDate
+         */
+
+        int year = InputValidator.validYear(goodbyeMessage, usageYear);
+        int month = InputValidator.validMonth(goodbyeMessage, usageMonth);
+        int day = InputValidator.validDay(goodbyeMessage, usageDay, month, year, InputValidator.leapYear(year));
+
+        return LocalDate.of(year, month, day);
+
+        }
 
     public int collectFormatToConvert() {
 
         /*
         Method collects and validates user input
          */
-        //int choice;
+
         String factorOne;
         int validFactorOne;
 
@@ -31,8 +58,7 @@ public class CollectData {
 
             factorOne = scanner.next();
 
-            if (userQuit.confirmed(factorOne)) {
-                System.out.println(goodbyeMessage);
+            if (userQuit.confirmed(factorOne, goodbyeMessage)) {
                 System.exit(0);
             }
 
@@ -40,7 +66,7 @@ public class CollectData {
 
                 try {
                     validFactorOne = Integer.parseInt(factorOne);
-                    if (InputValidator.inputIsValid(validFactorOne, usage)) {
+                    if (InputValidator.validTemperature(validFactorOne, usage)) {
                         return validFactorOne;
                     }
                 }
@@ -74,8 +100,7 @@ public class CollectData {
 
             factorTwo = scanner.next();
 
-            if (userQuit.confirmed(factorTwo)) {
-                System.out.println(goodbyeMessage);
+            if (userQuit.confirmed(factorTwo, goodbyeMessage)) {
                 System.exit(0);
             }
 
@@ -83,7 +108,7 @@ public class CollectData {
 
                 try {
                     validFactorTwo = Integer.parseInt(factorTwo);
-                    if (InputValidator.inputIsValid(validFactorTwo, usage)) {
+                    if (InputValidator.validTemperature(validFactorTwo, usage)) {
                         return validFactorTwo;
                     }
                 }
@@ -103,34 +128,47 @@ public class CollectData {
         String temperature;
         double validTemperature;
 
-        if (validFactorTwo == 1) {
-            System.out.println("Enter Celsius temperature: ");
-        } else if (validFactorTwo == 2) {
-            System.out.println("Enter Fahrenheit temperature:");
-        } else {
-            System.out.println("Enter Kelvin temperature: ");
-        }
-
         while (true) {
+
+            if (validFactorTwo == 1) {
+                System.out.println("Enter Celsius temperature: ");
+            } else if (validFactorTwo == 2) {
+                System.out.println("Enter Fahrenheit temperature:");
+            } else {
+                System.out.println("Enter Kelvin temperature: ");
+            }
+
+
             Scanner scanner = new Scanner(System.in);
 
             /*
             Extended input validation:
             - accept double value only,
-            - accept 'q' as quit (refer to: userQuit.java).
+            - accept 'q' as quit (refer to: userQuit.java),
+            - reject values lower than absolute zero.
              */
 
             temperature = scanner.next();
 
-            if (userQuit.confirmed(temperature)) {
-                System.out.println(goodbyeMessage);
+            if (userQuit.confirmed(temperature, goodbyeMessage)) {
                 System.exit(0);
             }
             else {
 
                 try {
                     validTemperature = Double.parseDouble(temperature);
-                    return validTemperature;
+                    if (validFactorTwo == 1 && validTemperature < -273.15) {
+                        System.out.println(absoluteCelsius);
+                    }
+                    else if (validFactorTwo == 2 && validTemperature < -459.67) {
+                        System.out.println(absoluteFahrenheit);
+                    }
+                    else if (validFactorTwo ==3 && validTemperature < 0) {
+                        System.out.println(absoluteKelvin);
+                    }
+                    else {
+                        return validTemperature;
+                    }
                 }
 
                 catch (Exception e) {
