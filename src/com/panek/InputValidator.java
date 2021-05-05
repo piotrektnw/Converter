@@ -62,7 +62,7 @@ public class InputValidator {
         /*
         Validate user 'month' input. Conditions:
         - accept user quit decision,
-        - reject strings - TO BE CHANGED (ACCEPT STRINGS AND RECOGNIZE TYPOS)
+        - recognize String input and in case of typo find most similar word and returns it for user acceptation
         - reject values greater than quantity of months in a year,
          */
 
